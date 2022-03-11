@@ -7,7 +7,10 @@ import time
 
 import matplotlib  # noqa
 
-matplotlib.use("TkAgg")  # noqa
+if os.environ.get('DISPLAY','') == '':
+    matplotlib.use("Agg")  # noqa
+else:
+    matplotlib.use("TkAgg")
 import matplotlib.dates as mplotdates  # noqa
 import matplotlib.pyplot as plt  # noqa
 import numpy  # noqa

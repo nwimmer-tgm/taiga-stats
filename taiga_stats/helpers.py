@@ -4,8 +4,11 @@ import sys
 import matplotlib
 
 import taiga_stats.constants as c
-
-matplotlib.use("TkAgg")  # Reference: https://stackoverflow.com/a/48374671/265508
+import os
+if os.environ.get('DISPLAY','') == '':
+    matplotlib.use("Agg")
+else:
+    matplotlib.use("TkAgg")  # Reference: https://stackoverflow.com/a/48374671/265508
 
 
 DOT_HEADER_FMT = """digraph {:s} {{
