@@ -33,8 +33,12 @@ def get_stories_with_tag(project, tag):
     else:
         ret_uss = []
         for us in uss:
-            if us.tags and tag in us.tags:
-                ret_uss.append(us)
+            # us.tags returns a list of [tag_name,tag_color] lists, therefor two loops are necessary
+            if us.tags:
+                for us_tag in us.tags:
+                    # side effect: filtering by color works as well
+                    if tag in us_tag:
+                        ret_uss.append(us)
 
     if ret_uss is None or len(ret_uss) == 0:
         print(
